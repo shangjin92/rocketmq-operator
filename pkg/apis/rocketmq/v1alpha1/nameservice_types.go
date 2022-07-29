@@ -64,7 +64,7 @@ type NameServiceSpec struct {
 	// PriorityClassName indicates the pod's priority
 	PriorityClassName string `json:"priorityClassName,omitempty"`
 	// ServiceAccountName
-	ServiceAccountName string `json:"ServiceAccountName,omitempty"`
+	ServiceAccountName string `json:"serviceAccountName,omitempty"`
 }
 
 // NameServiceStatus defines the observed state of NameService
@@ -81,6 +81,9 @@ type NameServiceStatus struct {
 
 // NameService is the Schema for the nameservices API
 // +k8s:openapi-gen=true
+// +kubebuilder:printcolumn:name="Size",type="integer",JSONPath=".spec.size"
+// +kubebuilder:printcolumn:name="Host-Network",type="boolean",JSONPath=".spec.hostNetwork"
+// +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 type NameService struct {
 	metav1.TypeMeta   `json:",inline"`
